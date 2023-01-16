@@ -28,11 +28,7 @@ public class UserRepositoryTest {
         String name = "name";
         String email = "email";
 
-        userRepository.save(User.builder()
-                .name(name)
-                .email(email)
-                .role(Role.GUEST)
-                .build());
+        userRepository.save(User.builder().name(name).email(email).role(Role.GUEST).build());
 
         List<User> users = userRepository.findAll();
 
