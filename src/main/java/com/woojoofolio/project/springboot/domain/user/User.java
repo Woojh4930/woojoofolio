@@ -1,4 +1,4 @@
-package com.woojoofolio.project.domain.user;
+package com.woojoofolio.project.springboot.domain.user;
 
 import lombok.Builder;
 import lombok.Getter;
