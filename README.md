@@ -43,6 +43,7 @@
         testImplementation('org.springframework.boot:spring-boot-starter-test')
     }
 
+  - [X] springBoot Application 자체 서버 실행
 ### Git
 - [X] 깃허브 원격 저장소 생성
   - 상단 메뉴 Git -> GitHub -> Share Project on GitHub
