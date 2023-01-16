@@ -6,15 +6,68 @@
 <br/>
 
 ### SpringBoot
-- [ ] 그레이들 프로젝트 -> 스프링 부트 프로젝트로 변경
+- [X] 그레이들 프로젝트 -> 스프링 부트 프로젝트로 변경
+  - build.gradle에서 내용 변경
+
+
+    buildscript {
+        ext {
+        springBootVersion = '2.1.7.RELEASE'
+        }
+
+        repositories {
+        mavenCentral()
+        }
+
+        dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        }
+    }
+    
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    
+    
+    group 'com.woojoofolio.project'
+    version '1.0-SNAPSHOT'
+    sourceCompatibility = 11
+    
+    repositories {
+        mavenCentral()
+    }
+    
+    dependencies {
+        implementation('org.springframework.boot:spring-boot-starter-web')
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+    }
+
+  - [X] springBoot Application 자체 서버 실행
 ### Git
-- [ ] 깃허브 원격 저장소 생성
+- [X] 깃허브 원격 저장소 생성
+  - 상단 메뉴 Git -> GitHub -> Share Project on GitHub
+
 ### Gradle Test
 - [ ] 테스트 코드 작성
+  - UserRepository
+    - [X] User Entity 생성 테스트
 ### Lombok
-- [ ] 롬복 설치
+- [X] 롬복 설치
+  - 플러그인 설치 : ctrl+shift+A -> plugins -> Lombok install -> reboot intelliJ
+  - 롬복 의존성 추가
+
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
 ### JPA
-- [ ] Spring Data JPA 설치
+- [X] Spring Data JPA 설치
+  - JPA 의존성 추가
+
+    
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('com.h2database:h2')
 - [ ] Spring Data JPA 테스트 코드 작성
 - [ ] JPA Auditing을 이용하여 생성시간/수정시간 자동화하기
 ### mustache
