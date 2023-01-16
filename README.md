@@ -60,7 +60,12 @@
     annotationProcessor 'org.projectlombok:lombok'
 
 ### JPA
-- [ ] Spring Data JPA 설치
+- [X] Spring Data JPA 설치
+  - JPA 의존성 추가
+
+    
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('com.h2database:h2')
 - [ ] Spring Data JPA 테스트 코드 작성
 - [ ] JPA Auditing을 이용하여 생성시간/수정시간 자동화하기
 ### mustache
