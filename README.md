@@ -50,6 +50,8 @@
 
 ### Gradle Test
 - [ ] 테스트 코드 작성
+  - UserRepository
+    - [X] User Entity 생성 테스트
 ### Lombok
 - [X] 롬복 설치
   - 플러그인 설치 : ctrl+shift+A -> plugins -> Lombok install -> reboot intelliJ
