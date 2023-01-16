@@ -51,7 +51,14 @@
 ### Gradle Test
 - [ ] 테스트 코드 작성
 ### Lombok
-- [ ] 롬복 설치
+- [X] 롬복 설치
+  - 플러그인 설치 : ctrl+shift+A -> plugins -> Lombok install -> reboot intelliJ
+  - 롬복 의존성 추가
+
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
 ### JPA
 - [ ] Spring Data JPA 설치
 - [ ] Spring Data JPA 테스트 코드 작성
