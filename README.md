@@ -6,9 +6,47 @@
 <br/>
 
 ### SpringBoot
-- [ ] 그레이들 프로젝트 -> 스프링 부트 프로젝트로 변경
+- [X] 그레이들 프로젝트 -> 스프링 부트 프로젝트로 변경
+  - build.gradle에서 내용 변경
+
+
+    buildscript {
+        ext {
+        springBootVersion = '2.1.7.RELEASE'
+        }
+
+        repositories {
+        mavenCentral()
+        }
+
+        dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        }
+    }
+    
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    
+    
+    group 'com.woojoofolio.project'
+    version '1.0-SNAPSHOT'
+    sourceCompatibility = 11
+    
+    repositories {
+        mavenCentral()
+    }
+    
+    dependencies {
+        implementation('org.springframework.boot:spring-boot-starter-web')
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+    }
+
 ### Git
-- [ ] 깃허브 원격 저장소 생성
+- [X] 깃허브 원격 저장소 생성
+  - 상단 메뉴 Git -> GitHub -> Share Project on GitHub
+
 ### Gradle Test
 - [ ] 테스트 코드 작성
 ### Lombok
