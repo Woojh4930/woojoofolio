@@ -68,8 +68,11 @@
     
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('com.h2database:h2')
-- [ ] Spring Data JPA 테스트 코드 작성
-- [ ] JPA Auditing을 이용하여 생성시간/수정시간 자동화하기
+- [X] JPA Auditing을 이용하여 생성시간/수정시간 자동화하기
+  - domain 패키지에 BaseTimeEntity 생성
+  - @MappedSuperclass는 다른 엔티티가 상속한 경우 칼럼으로 인식
+  - @EntityListeners(클래스) 해당 클래스의 기능을 빌려옴
+  - User에 BaseTimeEntity 상속
 ### mustache
 - [ ] mustach를 이용한 기본 페이지 만들기
 - [ ] 게시글 등록 화면 만들기
