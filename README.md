@@ -50,8 +50,12 @@
 
 ### Gradle Test
 - [ ] 테스트 코드 작성
-  - UserRepository
+  - UserRepositoryTest
     - [X] User Entity 생성 테스트
+    - [X] 생성날짜, 수정날짜 컬럼 자동기입 테스트
+  - PostsRepositoryTest
+    - [X] Posts Entity 생성 테스트
+    - [X] 생성날짜, 수정날짜 컬럼 자동기입 테스트
 ### Lombok
 - [X] 롬복 설치
   - 플러그인 설치 : ctrl+shift+A -> plugins -> Lombok install -> reboot intelliJ
@@ -68,10 +72,19 @@
     
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('com.h2database:h2')
-- [ ] Spring Data JPA 테스트 코드 작성
-- [ ] JPA Auditing을 이용하여 생성시간/수정시간 자동화하기
+- [X] JPA Auditing을 이용하여 생성시간/수정시간 자동화하기
+  - domain 패키지에 BaseTimeEntity 생성
+  - @MappedSuperclass는 다른 엔티티가 상속한 경우 칼럼으로 인식
+  - @EntityListeners(클래스) 해당 클래스의 기능을 빌려옴
+  - User, Posts에 BaseTimeEntity 상속
 ### mustache
-- [ ] mustach를 이용한 기본 페이지 만들기
+- [X] mustache를 이용한 기본 페이지 만들기
+  - plugins에서 mustache 검색 후 install
+  - 재부팅 후 의존성 추가
+  - IndexController 생성 후 이름 리턴
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
 - [ ] 게시글 등록 화면 만들기
 - [ ] 전체 조회 화면 만들기
 - [ ] 게시글 수정, 삭제 화면 만들기
