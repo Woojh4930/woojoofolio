@@ -50,8 +50,12 @@
 
 ### Gradle Test
 - [ ] 테스트 코드 작성
-  - UserRepository
+  - UserRepositoryTest
     - [X] User Entity 생성 테스트
+    - [X] 생성날짜, 수정날짜 컬럼 자동기입 테스트
+  - PostsRepositoryTest
+    - [X] Posts Entity 생성 테스트
+    - [X] 생성날짜, 수정날짜 컬럼 자동기입 테스트
 ### Lombok
 - [X] 롬복 설치
   - 플러그인 설치 : ctrl+shift+A -> plugins -> Lombok install -> reboot intelliJ
@@ -72,7 +76,7 @@
   - domain 패키지에 BaseTimeEntity 생성
   - @MappedSuperclass는 다른 엔티티가 상속한 경우 칼럼으로 인식
   - @EntityListeners(클래스) 해당 클래스의 기능을 빌려옴
-  - User에 BaseTimeEntity 상속
+  - User, Posts에 BaseTimeEntity 상속
 ### mustache
 - [ ] mustach를 이용한 기본 페이지 만들기
 - [ ] 게시글 등록 화면 만들기
