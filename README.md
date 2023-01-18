@@ -95,7 +95,15 @@
   - 조회용은 @Transactional에 readonly=true 하기
   - IndexController의 Model에 담기
   - index.mustache에서 mustache 문법을 이용하여 PostListResponseDto 정보 보여주기
-- [ ] 게시글 수정, 삭제 화면 만들기
+- [X] 게시글 수정, 삭제 화면 만들기
+  - 수정
+    - 제목, 내용을 받을 PostsUpdateRequestDto 생성
+    - Posts에서 PostsUpdateRequestDto 정보를 update하는 메서드 만들기
+    - PostsService 에서 id를 통해 Posts를 찾고 PostsUpdateRequestDto를 주입하는 메서드 생성
+    - index.js의 ajax를 통해 id와 제목, 내용 data 전달
+  - 삭제
+    - 삭제할 id를 통해 PostsRepository에서 삭제
+    - index.js의 ajax를 통해 id 전달(@PathVariable)
 ### Spring Security
 - [ ] 스프링 시큐리티 설정
 ### OAuth 2.0
