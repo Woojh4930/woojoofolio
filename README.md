@@ -56,6 +56,8 @@
   - PostsRepositoryTest
     - [X] Posts Entity 생성 테스트
     - [X] 생성날짜, 수정날짜 컬럼 자동기입 테스트
+  - IndexControllerTest
+    - [X] 메인 페이지 로딩 테스트
 ### Lombok
 - [X] 롬복 설치
   - 플러그인 설치 : ctrl+shift+A -> plugins -> Lombok install -> reboot intelliJ
