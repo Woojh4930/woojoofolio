@@ -49,13 +49,17 @@
   - 상단 메뉴 Git -> GitHub -> Share Project on GitHub
 
 ### Gradle Test
-- [ ] 테스트 코드 작성
+- [X] 테스트 코드 작성
   - UserRepositoryTest
     - [X] User Entity 생성 테스트
     - [X] 생성날짜, 수정날짜 컬럼 자동기입 테스트
   - PostsRepositoryTest
     - [X] Posts Entity 생성 테스트
     - [X] 생성날짜, 수정날짜 컬럼 자동기입 테스트
+  - IndexControllerTest
+    - [X] 메인 페이지 로딩 테스트
+  - PostApiControllerTest
+    - [X] Posts CRUD 테스트
 ### Lombok
 - [X] 롬복 설치
   - 플러그인 설치 : ctrl+shift+A -> plugins -> Lombok install -> reboot intelliJ
@@ -105,10 +109,29 @@
     - 삭제할 id를 통해 PostsRepository에서 삭제
     - index.js의 ajax를 통해 id 전달(@PathVariable)
 ### Spring Security
-- [ ] 스프링 시큐리티 설정
+- [X] 스프링 시큐리티 설정
+  - 의존성 추가
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 ### OAuth 2.0
-- [ ] 구글 로그인 연동
-- [ ] 네이버 로그인 연동
+- [X] 구글 로그인 연동
+  - OAuthAttributes
+    - registrationId를 통해 구글, 네이버 로그인 구분
+    - userNameAttributeName을 통해 자격 인증
+    - attributes를 통해 유저의 정보 저장
+    - toEntity method를 통해 User 정보로 변환
+  - SessionUser
+    - User Entity와 유사하지만 직렬화를 지원
+    - User Entity에서 받은 정보 중 필요한 정보만 session에 저장해주는 역할
+  - CustomOAuth2UserService
+    - attributes -> User Entity -> SessionUserDto 로 변경해주는 역할
+  - SecurityConfig
+    - User의 역할에 따라 접근 가능한 URL을 구분
+  - application-oauth.properties를 통해 클라이언트 아이디와 비밀번호, scope 정보 입력
+- [X] 네이버 로그인 연동
+  - 네이버 로그인은 스프링 시큐리티를 지원하지 않기 때문에 application-oauth에 적어야 할 정보가 많음
 ### AWS
 #### EC2
 - [ ] 인스턴스 생성
@@ -133,3 +156,11 @@
 ### Github Action
 - [ ] 깃 푸시를 했을 때 자동으로 테스트 후 배포하는 deploy.yml 생성
 ### 기타
+- 어노테이션을 이용해서 파라미터로 언제든지 세션에 있는 SessionUser 정보 조회
+- h2 database session에 정보 저장하는 설정
+  - application.properties에 "spring.session.store-type=jdbc" 추가
+  - 의존성 추가
+
+
+    implementation 'org.springframework.session:spring-session-jdbc'
+-Jpa Auditing 기능 개선
