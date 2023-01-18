@@ -85,9 +85,25 @@
 
 
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
-- [ ] 게시글 등록 화면 만들기
-- [ ] 전체 조회 화면 만들기
-- [ ] 게시글 수정, 삭제 화면 만들기
+- [X] 게시글 등록 화면 만들기
+  - PostsApiController(REST) 생성 후 /api/v1/posts 관리
+  - PostsRequestDto 생성 후 Posts Entity로 바꾸는 메서드 만들기
+  - index.js의 ajax 를 통해 form 안의 정보들을 PostRequestDto로 변환
+- [X] 전체 조회 화면 만들기
+  - PostsRepository에서 @Query를 이용하여 내림차순 조회하는 쿼리문 만들기
+  - PostsService에서 리스트에 있는 Posts를 map 하여 PostsListResponseDto로 변환(id,title,author,modifiedDate)
+  - 조회용은 @Transactional에 readonly=true 하기
+  - IndexController의 Model에 담기
+  - index.mustache에서 mustache 문법을 이용하여 PostListResponseDto 정보 보여주기
+- [X] 게시글 수정, 삭제 화면 만들기
+  - 수정
+    - 제목, 내용을 받을 PostsUpdateRequestDto 생성
+    - Posts에서 PostsUpdateRequestDto 정보를 update하는 메서드 만들기
+    - PostsService 에서 id를 통해 Posts를 찾고 PostsUpdateRequestDto를 주입하는 메서드 생성
+    - index.js의 ajax를 통해 id와 제목, 내용 data 전달
+  - 삭제
+    - 삭제할 id를 통해 PostsRepository에서 삭제
+    - index.js의 ajax를 통해 id 전달(@PathVariable)
 ### Spring Security
 - [ ] 스프링 시큐리티 설정
 ### OAuth 2.0
