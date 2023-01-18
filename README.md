@@ -85,7 +85,10 @@
 
 
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
-- [ ] 게시글 등록 화면 만들기
+- [X] 게시글 등록 화면 만들기
+  - PostsApiController(REST) 생성 후 /api/v1/posts 관리
+  - PostsRequestDto 생성 후 Posts Entity로 바꾸는 메서드 만들기
+  - index.js의 ajax 를 통해 form 안의 정보들을 PostRequestDto로 변환
 - [ ] 전체 조회 화면 만들기
 - [ ] 게시글 수정, 삭제 화면 만들기
 ### Spring Security
