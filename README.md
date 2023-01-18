@@ -89,7 +89,12 @@
   - PostsApiController(REST) 생성 후 /api/v1/posts 관리
   - PostsRequestDto 생성 후 Posts Entity로 바꾸는 메서드 만들기
   - index.js의 ajax 를 통해 form 안의 정보들을 PostRequestDto로 변환
-- [ ] 전체 조회 화면 만들기
+- [X] 전체 조회 화면 만들기
+  - PostsRepository에서 @Query를 이용하여 내림차순 조회하는 쿼리문 만들기
+  - PostsService에서 리스트에 있는 Posts를 map 하여 PostsListResponseDto로 변환(id,title,author,modifiedDate)
+  - 조회용은 @Transactional에 readonly=true 하기
+  - IndexController의 Model에 담기
+  - index.mustache에서 mustache 문법을 이용하여 PostListResponseDto 정보 보여주기
 - [ ] 게시글 수정, 삭제 화면 만들기
 ### Spring Security
 - [ ] 스프링 시큐리티 설정
