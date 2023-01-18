@@ -49,7 +49,7 @@
   - 상단 메뉴 Git -> GitHub -> Share Project on GitHub
 
 ### Gradle Test
-- [ ] 테스트 코드 작성
+- [X] 테스트 코드 작성
   - UserRepositoryTest
     - [X] User Entity 생성 테스트
     - [X] 생성날짜, 수정날짜 컬럼 자동기입 테스트
@@ -163,3 +163,4 @@
 
 
     implementation 'org.springframework.session:spring-session-jdbc'
+-Jpa Auditing 기능 개선
