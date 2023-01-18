@@ -126,7 +126,8 @@
   - SecurityConfig
     - User의 역할에 따라 접근 가능한 URL을 구분
   - application-oauth.properties를 통해 클라이언트 아이디와 비밀번호, scope 정보 입력
-- [ ] 네이버 로그인 연동
+- [X] 네이버 로그인 연동
+  - 네이버 로그인은 스프링 시큐리티를 지원하지 않기 때문에 application-oauth에 적어야 할 정보가 많음
 ### AWS
 #### EC2
 - [ ] 인스턴스 생성
