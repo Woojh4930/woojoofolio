@@ -152,3 +152,9 @@
 - [ ] 깃 푸시를 했을 때 자동으로 테스트 후 배포하는 deploy.yml 생성
 ### 기타
 - 어노테이션을 이용해서 파라미터로 언제든지 세션에 있는 SessionUser 정보 조회
+- h2 database session에 정보 저장하는 설정
+  - application.properties에 "spring.session.store-type=jdbc" 추가
+  - 의존성 추가
+
+
+    implementation 'org.springframework.session:spring-session-jdbc'
