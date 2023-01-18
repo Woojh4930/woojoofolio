@@ -40,7 +40,7 @@ public class UserRepositoryTest {
 
     @Test
     public void BaseTimeEntity_등록() {
-        LocalDateTime now = LocalDateTime.of(2023,1,17,0,0,0);
+        LocalDateTime now = LocalDateTime.of(2023, 1, 17, 0, 0, 0);
         userRepository.save(User.builder()
                 .name("name")
                 .email("email")

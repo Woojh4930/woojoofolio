@@ -1,9 +1,7 @@
 package com.woojoofolio.project.springboot.web.dto;
 
 import com.woojoofolio.project.springboot.domain.posts.Posts;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
