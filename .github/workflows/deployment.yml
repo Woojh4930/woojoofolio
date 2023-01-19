@@ -44,9 +44,4 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
         
     - name: Upload to AWS S3
-      run: |
-        aws deploy push \
-          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
-          --ignore-hidden-files \
-          --s3-location deploy/$PROJECT_NAME.zip \
-          --source .
+      run: aws s3 cp ./deploy/${{ env.PROJECT_NAME }}.zip s3://$S3_BUCKET_NAME/${{ env.PROJECT_NAME }}.zip
