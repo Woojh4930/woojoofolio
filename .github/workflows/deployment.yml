@@ -45,3 +45,10 @@ jobs:
         
     - name: Upload to AWS S3
       run: aws s3 cp ./deploy/${{ env.PROJECT_NAME }}.zip s3://$S3_BUCKET_NAME/${{ env.PROJECT_NAME }}.zip
+
+    - name: Deploy to AWS EC2 from S3
+      run: aws deploy create-deployment \
+        --application-name  ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \ 
+        --deployment-config-name CodeDeployDefault.AllAtOnce \ 
+        --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \ 
+        --s3-location bucket=$S3_BUCKET_NAME,key=${{ env.PROJECT_NAME }}.zip,bundleType=zip
