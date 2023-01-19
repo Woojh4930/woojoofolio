@@ -9,8 +9,8 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   S3_BUCKET_NAME: woojoofolio-zip-bucket
-  CODE_DEPLOY_APPLICATION_NAME: woojoofolio-deploy
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: woojoofolio-deploy-group
+  CODE_DEPLOY_APPLICATION_NAME: woojoofolio-codedeploy
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: woojoofolio-codedeploy-group
   PROJECT_NAME: woojoofolio
   
 jobs:
