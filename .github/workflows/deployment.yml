@@ -11,12 +11,19 @@ env:
   S3_BUCKET_NAME: woojoofolio-zip-bucket
   CODE_DEPLOY_APPLICATION_NAME: woojoofolio-deploy
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: woojoofolio-deploy-group
+  PROJECT_NAME: woojoofolio
   
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
+    
+    - name: before_deploy
+      run: zip -r woojoofolio * &&
+        mkdir -p deploy &&
+        mv woojoofolio.zip deploy/woojoofolio.zip
+    
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -35,3 +42,11 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
         aws-region: ${{ env.AWS_REGION }}
+        
+    - name: Upload to AWS S3
+      run: |
+        aws deploy push \
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+          --ignore-hidden-files \
+          --s3-location deploy/$PROJECT_NAME.zip \
+          --source .
