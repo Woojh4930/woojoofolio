@@ -136,13 +136,9 @@
 ### AWS
 - [X] 깃 클론하기
 
-
     sudo yum install git
     git clone [클론할 주소]
-    
-### 1단계
-- [X] pull 받은 후 자동으로 배포해주는 스크립트 작성
-- [X] src/resource/application-real.properties 생성
+
 #### EC2
 - [X] 인스턴스 생성
 - [X] 보안그룹 생성
@@ -196,23 +192,40 @@
     sudo yum install mysql
     mysql -u [계정 ID] -p -h [Host네임]; #RDS 접근
     show databass; # 데이터베이스 목록 확인
+#### IAM
+- [ ] 역할 생성
+- [X] 사용자 생성
+  - S3 출입 허가를 위한 권한(AmazonS3FullAccess,AWSCodeDeployFullAccess)을 가지는 AWS_ACCESS_KEY 생성
+- [ ] EC2에 IAM역할 추가
 #### S3
-- [ ] 버킷 생성
+- [X] 버킷 생성
+  - 특이사항 없음
 #### CodeDeploy
 - [ ] 에이전트 설치
 - [ ] 권한 생성
 - [ ] Github Action, S3, CodeDeploy 연동
-#### IAM
-- [ ] 역할 생성
-- [ ] 사용자 생성
-- [ ] EC2에 IAM역할 추가
 ### Nginx
 - [ ] Nginx 설치
 - [ ] Nginx 포트 연결
 ### Github Action
-- [ ] 깃 푸시를 했을 때 자동으로 테스트 후 배포하는 deploy.yml 생성
+- [X] PR을 했을 때 자동으로 빌드 및 테스트로 Merge 검사
+  - Action -> Java with gradle -> gradle.yml 생성
+- [X] 깃 푸시를 했을 때 자동으로 테스트 후 배포하는 deployment.yml 생성
+  - S3에 접근하여 빌드할 jar 파일을 zip 파일로 변경 후 버킷에 올리기
 
-### 기타
+## 과정 정리
+### 1단계 - 수동 중단 배포 : ~/app/step1/deploy.sh 실행할 때만 배포
+- [X] 배포 스크립트 작성
+  - git pull 받기
+  - gradle 빌드하기
+  - jar 파일을 프로젝트 파일에서 꺼내오기
+  - 열려있는 포트가 있으면 끄고 다시 켜기
+- [X] src/resource/application-real.properties 생성
+- [X] ~/app/application-real-db.properties 생성 : RDS 정보를 입력하는 파일
+
+### 2단계 - 자동 중단 배포 : git push 할 때 배포
+
+## 기타
 - 어노테이션을 이용해서 파라미터로 언제든지 세션에 있는 SessionUser 정보 조회
 - h2 database session에 정보 저장하는 설정
   - application.properties에 "spring.session.store-type=jdbc" 추가
