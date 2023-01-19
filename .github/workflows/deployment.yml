@@ -1,24 +1,27 @@
-# This is a basic workflow to help you get started with Actions
-
-name: woojoofolio 배포
-
-on:
-  push:
-    branches: [ "main" ]
-
 env:
   AWS_REGION: ap-northeast-2
   S3_BUCKET_NAME: woojoofolio-zip-bucket
   CODE_DEPLOY_APPLICATION_NAME: woojoofolio-codedeploy
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: woojoofolio-codedeploy-group
   PROJECT_NAME: woojoofolio
+
+name: woojoofolio 배포
+
+on:
+  release:
+    types: [push] # (1) push시 자동으로 실행됩니다.
+  push:
+    branches: [main] # (2) main 브랜치에서 동작합니다.
+  workflow_dispatch: # (3) 수동으로도 실행이 가능합니다.
   
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: read
+      packages: write
+      
     steps:
-        
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -29,7 +32,7 @@ jobs:
         java-version: '11'
         
     - name: Build with Gradle
-      run: chmod +x gradlew && ./gradlew clean build
+      run: chmod +x ./gradlew && ./gradlew clean build
     
     - name: before_deploy
       run: zip -r woojoofolio * &&
@@ -44,7 +47,7 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
         
     - name: Upload to AWS S3
-      run: aws s3 cp ./deploy/${{ env.PROJECT_NAME }}.zip s3://$S3_BUCKET_NAME/${{ env.PROJECT_NAME }}.zip
+      run: aws s3 cp --region ap-northeast-2 ./deploy/${{ env.PROJECT_NAME }}.zip s3://$S3_BUCKET_NAME/${{ env.PROJECT_NAME }}.zip
 
     - name: Deploy to AWS EC2 from S3
       run: |
