@@ -132,13 +132,25 @@
   - application-oauth.properties를 통해 클라이언트 아이디와 비밀번호, scope 정보 입력
 - [X] 네이버 로그인 연동
   - 네이버 로그인은 스프링 시큐리티를 지원하지 않기 때문에 application-oauth에 적어야 할 정보가 많음
+
 ### AWS
+- [X] 깃 클론하기
+
+
+    sudo yum install git
+    git clone [클론할 주소]
+    
+### 1단계
+- [X] pull 받은 후 자동으로 배포해주는 스크립트 작성
+- [X] src/resource/application-real.properties 생성
 #### EC2
 - [X] 인스턴스 생성
 - [X] 보안그룹 생성
 - [X] 탄력적 IP 할당
 - [X] EC2 연결
   - 윈도우의 경우 개인 키(.pem) 다운받은 뒤 터미널에서 연결할 경로에 옮기고 EC2 인스턴스에서 연결에 들어가 ssh 연결 명령어를 터미널에 입력한다.
+- [X] EC2 Java 11 설치
+  - [Java 11 설치 방법] (https://pompitzz.github.io/blog/Java/awsEc2InstallJDK11.html) .
 - [X] EC2 HostName 변경
 
 
@@ -199,6 +211,7 @@
 - [ ] Nginx 포트 연결
 ### Github Action
 - [ ] 깃 푸시를 했을 때 자동으로 테스트 후 배포하는 deploy.yml 생성
+
 ### 기타
 - 어노테이션을 이용해서 파라미터로 언제든지 세션에 있는 SessionUser 정보 조회
 - h2 database session에 정보 저장하는 설정
@@ -207,4 +220,4 @@
 
 
     implementation 'org.springframework.session:spring-session-jdbc'
--Jpa Auditing 기능 개선
+- Jpa Auditing 기능 개선
