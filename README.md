@@ -206,6 +206,8 @@
 - [ ] Nginx 설치
 - [ ] Nginx 포트 연결
 ### Github Action
+- [X] PR을 했을 때 자동으로 빌드 및 테스트로 Merge 검사
+  - Action -> Java with gradle -> gradle.yml 생성
 - [ ] 깃 푸시를 했을 때 자동으로 테스트 후 배포하는 deploy.yml 생성
 
 ### 1단계 - 수동 중단 배포 : ~/app/step1/deploy.sh 실행할 때만 배포
@@ -216,6 +218,8 @@
   - 열려있는 포트가 있으면 끄고 다시 켜기
 - [X] src/resource/application-real.properties 생성
 - [X] ~/app/application-real-db.properties 생성 : RDS 정보를 입력하는 파일
+
+### 2단계 - 자동 중단 배포 : git push 할 때 배포
 
 ### 기타
 - 어노테이션을 이용해서 파라미터로 언제든지 세션에 있는 SessionUser 정보 조회
