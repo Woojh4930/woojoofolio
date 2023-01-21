@@ -234,7 +234,7 @@
   - S3에 올리기(S3에 접근이 허용되어야 함)
   - S3에서 EC2로 받기(CodeDeploy가 옮겨주는 역할)
   - EC2 확인하기
-
+- [X] 프로젝트 내에서 deploy.sh 만들기
 ### 3단계 - 자동 무중단 배포 : Nginx에서 port만 옮겨주며 배포
 
 ## 기타
@@ -245,4 +245,5 @@
 
 
     implementation 'org.springframework.session:spring-session-jdbc'
+
 - Jpa Auditing 기능 개선
