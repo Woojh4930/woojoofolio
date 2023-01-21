@@ -1,6 +1,6 @@
 {{>layout/header}}
 
-<h1>WooJooFolio ver.1.1</h1>
+<h1 style="color: #ffA500"><i class="bi bi-rocket" style="color: #ff4500"></i>WooJooFolio</h1>
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
@@ -13,6 +13,7 @@
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
                 <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
             {{/name}}
+            <span style="height: 20px; width: 20px;" id="version">ver.2</span>
         </div>
     </div>
     <br>
@@ -37,6 +38,7 @@
         {{/posts}}
         </tbody>
     </table>
+    <button type="button" class="btn btn-info" id="btn-skills" style="display: none"><i class="bi bi-tools"></i> Skills 보러가기</button>
 </div>
 
 {{>layout/footer}}
