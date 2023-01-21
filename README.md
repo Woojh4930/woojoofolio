@@ -207,8 +207,12 @@
 - [X] 애플리케이션 생성
 - [X] 배포 그룹 생성
 ### Nginx
-- [ ] Nginx 설치
-- [ ] Nginx 포트 연결
+- [X] Nginx 설치
+  - sudo amazon-linux-extras install nginx1
+  - sudo service nginx start
+- [X] Nginx 포트 연결
+  - sudo vim /etc/nginx/nginx.conf
+  - server 아래의 location / 부분에 proxy_pass http://localhost:8080; 입력
 ### Github Action
 - [X] PR을 했을 때 자동으로 빌드 및 테스트로 Merge 검사
   - Action -> Java with gradle -> gradle.yml 생성
@@ -236,7 +240,8 @@
   - EC2 확인하기
 - [X] 프로젝트 내에서 deploy.sh 만들기
 ### 3단계 - 자동 무중단 배포 : Nginx에서 port만 옮겨주며 배포
-
+- [X] Nginx 기본 포트인 80을 보안그룹에 접근 허용
+- [X] Nginx 연결 후 8080 포트로 연결해보기
 ## 기타
 - 어노테이션을 이용해서 파라미터로 언제든지 세션에 있는 SessionUser 정보 조회
 - h2 database session에 정보 저장하는 설정
