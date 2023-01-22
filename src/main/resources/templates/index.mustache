@@ -10,7 +10,13 @@
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
             {{/name}}
             {{^name}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                <a href="/oauth2/authorization/google" role="button">
+                    <img id="btn-google"
+                         src="/images/google/btn_google_signin_dark_normal_web.png"
+                         onmouseover="onHover()"
+                         onmouseout="offHover()"
+                         onclick="onClick()">
+                </a>
                 <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
             {{/name}}
             <span style="height: 20px; width: 20px;" id="version">ver.2</span>
