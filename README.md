@@ -239,15 +239,24 @@
   - S3에서 EC2로 받기(CodeDeploy가 옮겨주는 역할)
   - EC2 확인하기
 - [X] 프로젝트 내에서 deploy.sh 만들기
+
 ### 3단계 - 자동 무중단 배포 : Nginx에서 port만 옮겨주며 배포
 - [X] Nginx 기본 포트인 80을 보안그룹에 접근 허용
 - [X] Nginx 연결 후 8080 포트로 연결해보기
+- [X] 8081 포트와 8082 포트로 나누기
+- [X] 필요한 스크립트 작성
+  - profile.sh : 8081 포트인지 8082 포트인지 확인 후 바꾸는 역할
+  - stop.sh : 구동 중인 애플리케이션이 있는지 확인하고 끊어주는 역할
+  - start.sh : 새로운 버전을 올릴 애플리케이션을 구동시키는 역할
+  - health.sh : profile에 real1 또는 real2가 있는지 확인하여 둘을 교체해주는 역할
+  - switch.sh : Nginx에 있는 Service_url을 8081 또는 8082로 바꿔주는 역할
+
 ## 기타
 - 어노테이션을 이용해서 파라미터로 언제든지 세션에 있는 SessionUser 정보 조회
 - h2 database session에 정보 저장하는 설정
   - application.properties에 "spring.session.store-type=jdbc" 추가
   - 의존성 추가
-
+  
 
     implementation 'org.springframework.session:spring-session-jdbc'
 
