@@ -1,50 +1,53 @@
 {{>layout/header}}
 
-<h1 style="color: #ffA500"><i class="bi bi-rocket" style="color: #ff4500"></i>WooJooFolio</h1>
+<figure class="text-center">
+    <h1 style="color: #ffA500"><i class="bi bi-rocket" style="color: #ff4500"></i>WooJooFolio</h1>
+</figure>
 <div class="col-md-12">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-9">
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+        </div>
+        <div class="col-md-3">
             {{#name}}
                 Logged in as: <span id="user">{{name}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
             {{/name}}
             {{^name}}
-                <a href="/oauth2/authorization/google" role="button">
-                    <img id="btn-google"
-                         src="/images/google/btn_google_signin_dark_normal_web.png"
-                         onmouseover="onHover()"
-                         onmouseout="offHover()"
-                         onclick="onClick()">
-                </a>
-                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+                <img src="/images/google/btn_google_dark_normal_ios.svg" class="btn-oauth" id="btn-google"
+                     alt="이미지를 준비중입니다.">
+                <img src="/images/naver/btnW_iconS.png" class="btn-oauth size-40" id="btn-naver" alt="이미지를 준비중입니다.">
             {{/name}}
-            <span style="height: 20px; width: 20px;" id="version">ver.2</span>
+            <span id="version">ver.2</span>
         </div>
     </div>
-    <br>
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-        <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        {{#posts}}
+    <div class="col-md-6">
+
+        <!-- 목록 출력 영역 -->
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
             <tr>
-                <td>{{id}}</td>
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
+                <th>게시글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>최종수정일</th>
             </tr>
-        {{/posts}}
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-info" id="btn-skills" style="display: none"><i class="bi bi-tools"></i> Skills 보러가기</button>
+            </thead>
+            <tbody id="tbody">
+            {{#posts}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                    <td>{{author}}</td>
+                    <td>{{modifiedDate}}</td>
+                </tr>
+            {{/posts}}
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-info" id="btn-skills" style="display: none"><i class="bi bi-tools"></i> Skills
+        보러가기
+    </button>
 </div>
 
 {{>layout/footer}}

@@ -1,0 +1,17 @@
+.btn-oauth {
+    cursor: pointer;
+}
+.btn-right {
+    float: right;
+}
+
+.naver-over {
+    background-color: #03C75A;
+    background-color: rgba(3,199,90,0.3);
+}
+
+.size-40 {
+    width: 46px;
+    height: 46px;
+    padding: 3px;
+}
