@@ -12,8 +12,9 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="ef5ea700-ec5d-4d2c-a02d-0428b6e4e8cd">
-      <console name="woojoofolio" type="STANDARD" schema="mysql" session="Main" />
+    <connection id="386ea5cb-2cc9-4a05-a6c9-43f7a88a27f1">
+      <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
+      <console name="woojoofolio2" type="STANDARD" schema="woojoofolio" session="Main"><![CDATA[select * from user;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -21,6 +22,13 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="386ea5cb-2cc9-4a05-a6c9-43f7a88a27f1" dataset="woojoofolio.posts" active-filter-id="4d0871c0-98d6-441e-aabf-037af63ca69f">
+      <filter id="4d0871c0-98d6-441e-aabf-037af63ca69f" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -45,10 +53,10 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="ef5ea700-ec5d-4d2c-a02d-0428b6e4e8cd" active="true" signed="true">
+      <connection id="386ea5cb-2cc9-4a05-a6c9-43f7a88a27f1" active="true" signed="true">
         <database>
           <name value="woojoofolio" />
-          <description value="woojoofolio" />
+          <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
           <database-version value="5.5" />

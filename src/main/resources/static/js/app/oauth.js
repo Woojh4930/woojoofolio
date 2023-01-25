@@ -28,8 +28,10 @@ var oauth = {
     },
 
     move: function (address) {
-        $('#btn-google').attr('src', '/images/google/btn_google_dark_pressed_ios.svg');
-        location.href = "/oauth2/authorization/"+address;
+        if (address === 'google') {
+            $('#btn-google').attr('src', '/images/google/btn_google_dark_pressed_ios.svg');
+        }
+        location.href = "/oauth2/authorization/" + address;
     },
 
     over: function () {
