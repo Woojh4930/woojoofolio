@@ -13,6 +13,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="9d6c0e1a-5257-4d62-819e-b6ef6a56d512">
+      <console name="execute" type="STANDARD" schema="woojoofolio" session="Main"><![CDATA[select * from user;
+
+update user set role='USER';]]></console>
       <console name="woojoofolio" type="STANDARD" schema="mysql" session="Main" />
       <console name="woojoofolio2" type="STANDARD" schema="woojoofolio" session="Main"><![CDATA[alter database woojoofolio
 character set = 'utf8mb4'
@@ -66,6 +69,7 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="9d6c0e1a-5257-4d62-819e-b6ef6a56d512" dataset="woojoofolio.user" active-filter-id="" />
     <filter-actions connection-id="9d6c0e1a-5257-4d62-819e-b6ef6a56d512" dataset="woojoofolio.test" active-filter-id="6aec2d3d-deff-48c1-afc2-c9bd1866f3ee">
       <filter id="6aec2d3d-deff-48c1-afc2-c9bd1866f3ee" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />
