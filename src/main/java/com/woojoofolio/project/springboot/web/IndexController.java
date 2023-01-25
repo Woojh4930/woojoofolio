@@ -31,8 +31,11 @@ public class IndexController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model) {
+    public String postsUpdate(@PathVariable Long id, @LoginUser SessionUser user, Model model) {
         model.addAttribute("post", postsService.findById(id));
+        if (user != null) {
+            model.addAttribute("authority", user.isAuthority());
+        }
         return "posts-update";
     }
 }
