@@ -13,8 +13,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="386ea5cb-2cc9-4a05-a6c9-43f7a88a27f1">
-      <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
-      <console name="woojoofolio2" type="STANDARD" schema="woojoofolio" session="Main"><![CDATA[select * from user;]]></console>
+      <console name="woojoofolio" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
