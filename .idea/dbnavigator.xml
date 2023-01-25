@@ -14,8 +14,9 @@
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="9d6c0e1a-5257-4d62-819e-b6ef6a56d512">
       <console name="execute" type="STANDARD" schema="woojoofolio" session="Main"><![CDATA[select * from user;
+select * from posts;
 
-update user set role='USER';]]></console>
+update user set role='USER' where id='1';]]></console>
       <console name="woojoofolio" type="STANDARD" schema="mysql" session="Main" />
       <console name="woojoofolio2" type="STANDARD" schema="woojoofolio" session="Main"><![CDATA[alter database woojoofolio
 character set = 'utf8mb4'
