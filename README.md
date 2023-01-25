@@ -262,3 +262,7 @@
     implementation 'org.springframework.session:spring-session-jdbc'
 
 - Jpa Auditing 기능 개선
+
+## 트러블슈팅
+- nginx를 이용해서 서버를 열면 RDS에 데이터가 저장되지 않는 불상사가 발생했다.
+  - 해결방법 : 놀랍게도 start.sh에서 jar를 실행하는 부분에 application의 철자 중 t 하나를 빼먹어서 그랬다...
