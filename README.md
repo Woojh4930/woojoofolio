@@ -263,6 +263,13 @@
 
 - Jpa Auditing 기능 개선
 
+## refactoring
+- [X] 게시글을 등록, 수정, 삭제할 수 있는 역할과 그렇지 못한 역할과의 게시글 양식에 차이를 주기
+  - posts-read.mustache 만들기(수정, 삭제 버튼이 없고, 글은 span 태그로 변경)
+  - IndexController에 GetMapping하고 index.mustache에서 역할마다 보내는 링크를 따로 만들기
+- [X] 로그인을 하지 않아도 글을 읽을 수 있도록 하기
+  - SecurityConfig에서 "posts/read/*" 를 추가하여 읽기 전용인 링크는 접근 가능하도록 수정
+
 ## 트러블슈팅
 - nginx를 이용해서 서버를 열면 RDS에 데이터가 저장되지 않는 불상사가 발생했다.
   - 해결방법 : 놀랍게도 start.sh에서 jar를 실행하는 부분에 application의 철자 중 t 하나를 빼먹어서 그랬다...
