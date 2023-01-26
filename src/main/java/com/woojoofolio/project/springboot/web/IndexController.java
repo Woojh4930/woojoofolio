@@ -21,6 +21,7 @@ public class IndexController {
 
         if (user != null) {
             model.addAttribute("name", user.getName());
+            model.addAttribute("authority", user.isAuthority());
         }
         return "index";
     }
@@ -31,11 +32,14 @@ public class IndexController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, @LoginUser SessionUser user, Model model) {
+    public String postsUpdate(@PathVariable Long id, Model model) {
         model.addAttribute("post", postsService.findById(id));
-        if (user != null) {
-            model.addAttribute("authority", user.isAuthority());
-        }
         return "posts-update";
+    }
+
+    @GetMapping("/posts/read/{id}")
+    public String postsRead(@PathVariable Long id, Model model) {
+        model.addAttribute("post", postsService.findById(id));
+        return "posts-read";
     }
 }
