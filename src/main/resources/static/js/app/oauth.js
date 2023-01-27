@@ -4,27 +4,33 @@ var oauth = {
 
         $('#btn-google').on("click", function () {
             _this.move("google");
-        })
+        });
 
         $('#btn-google').on("mouseover", function () {
             _this.over();
-        })
+        });
 
         $('#btn-google').on("mouseout", function () {
             _this.out();
-        })
+        });
 
         $('#btn-naver').on("click", function () {
             _this.move("naver");
-        })
+        });
 
         $('#btn-naver').on("mouseover", function () {
             _this.over_naver();
-        })
+        });
 
         $('#btn-naver').on("mouseout", function () {
             _this.out_naver();
-        })
+        });
+
+        $('#version').on('click', function () {
+            _this.toggle();
+        });
+
+        $('#btn-skills').on('click')
     },
 
     move: function (address) {
@@ -48,7 +54,19 @@ var oauth = {
 
     out_naver: function () {
         $('#btn-naver').attr('class', 'btn-oauth size-40');
-    }
+    },
+
+    toggle: function () {
+        let skills = $('#btn-skills');
+
+        if (skills.css("display") === 'none') {
+            skills.show();
+            return;
+        }
+        skills.hide();
+    },
+
+
 }
 
 oauth.init();

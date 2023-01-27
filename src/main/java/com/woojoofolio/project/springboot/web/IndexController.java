@@ -42,4 +42,9 @@ public class IndexController {
         model.addAttribute("post", postsService.findById(id));
         return "posts-read";
     }
+
+    @GetMapping("/skills/read")
+    public String skillsRead() {
+        return "skills-read";
+    }
 }

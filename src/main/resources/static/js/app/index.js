@@ -14,9 +14,6 @@ var main = {
             _this.delete();
         });
 
-        $('#version').on('click', function () {
-            _this.toggle();
-        })
     },
     save: function () {
         let data = {
@@ -74,15 +71,6 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-    },
-    toggle: function () {
-        let skills = $('#btn-skills');
-
-        if (skills.css("display") === 'none') {
-            skills.show();
-            return;
-        }
-        skills.hide();
     }
 }
 
