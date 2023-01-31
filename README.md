@@ -269,6 +269,9 @@
   - IndexController에 GetMapping하고 index.mustache에서 역할마다 보내는 링크를 따로 만들기
 - [X] 로그인을 하지 않아도 글을 읽을 수 있도록 하기
   - SecurityConfig에서 "posts/read/*" 를 추가하여 읽기 전용인 링크는 접근 가능하도록 수정
+- [ ] 글등록 할 수 있는 역할로 바꿀 수 있는 기능 만들기
+- [ ] skills/read의 내용들을 CRUD 할 수 있도록 바꾸기
+- [ ] 게시판 페이징 처리
 
 ## 트러블슈팅
 - nginx를 이용해서 서버를 열면 RDS에 데이터가 저장되지 않는 불상사가 발생했다.
