@@ -26,11 +26,10 @@ var oauth = {
             _this.out_naver();
         });
 
-        $('#version').on('click', function () {
-            _this.toggle();
-        });
+        // $('#version').on('click', function () {
+        //     _this.toggle();
+        // });
 
-        $('#btn-skills').on('click')
     },
 
     move: function (address) {
@@ -56,15 +55,15 @@ var oauth = {
         $('#btn-naver').attr('class', 'btn-oauth size-40');
     },
 
-    toggle: function () {
-        let skills = $('#btn-skills');
-
-        if (skills.css("display") === 'none') {
-            skills.show();
-            return;
-        }
-        skills.hide();
-    },
+    // toggle: function () {
+    //     let skills = $('#btn-skills');
+    //
+    //     if (skills.css("display") === 'none') {
+    //         skills.show();
+    //         return;
+    //     }
+    //     skills.hide();
+    // },
 
 
 }
