@@ -2,21 +2,18 @@ var skills = {
     init: function () {
         let _this = this;
 
-        $('#img-frontend').on('mouseover', function () {
-            _this.over_img_frontend();
-        });
-
-        $('#img-frontend').on('mouseout', function () {
-            _this.out_img_frontend();
-        });
+        $('.img-size-middle').hover(function () {_this.over_img_frontend($(this));},
+            function () {_this.out_img_frontend($(this));});
     },
 
-    over_img_frontend: function () {
-        $('#img-frontend').attr("class","img-size-big");
+    over_img_frontend: function (img) {
+        img.attr("class","img-size-big");
+        $('#skill-name').text(img.attr('alt'));
     },
 
-    out_img_frontend: function () {
-        $('#img-frontend').attr("class","img-size-middle");
+    out_img_frontend: function (img) {
+        img.attr("class","img-size-middle");
+        $('#skill-name').text("");
     }
 }
 
