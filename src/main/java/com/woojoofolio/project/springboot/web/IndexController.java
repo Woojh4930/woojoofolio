@@ -47,4 +47,9 @@ public class IndexController {
     public String skillsRead() {
         return "skills-read";
     }
+
+    @GetMapping("/openai")
+    public String openAi() {
+        return "openai";
+    }
 }
