@@ -1,4 +1,3 @@
-import {OPEN_AI_API_KEY} from "../key";
 var main = {
     init: function () {
         let _this = this;
@@ -78,7 +77,9 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+
     openAi: function () {
+        const API_KEY = $('#send').attr("datatype");
         let text = $('#input').val();
         let data = {
             'model': "text-davinci-003",
@@ -93,8 +94,7 @@ var main = {
             type: 'POST',
             url: 'https://api.openai.com/v1/completions',
             headers: {
-                Authorization: 'Bearer '+ OPEN_AI_API_KEY,
-                "Content-Type": 'application/json'
+                Authorization: 'Bearer '+ API_KEY,
             },
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
