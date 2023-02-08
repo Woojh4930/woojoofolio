@@ -1,4 +1,5 @@
 application-oauth.properties
+application-api-key.properties
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
