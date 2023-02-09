@@ -5,6 +5,7 @@ import com.woojoofolio.project.springboot.config.auth.dto.SessionUser;
 import com.woojoofolio.project.springboot.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,13 @@ public class IndexController {
 
     private final PostsService postsService;
 
+    private final Environment env;
+
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-
+        String test = env.getProperty("TEST");
+        model.addAttribute("test", test);
         if (user != null) {
             model.addAttribute("name", user.getName());
             model.addAttribute("authority", user.isAuthority());
