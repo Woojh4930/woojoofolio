@@ -43,5 +43,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-### js ###
-key.js
+### env ###
+.env

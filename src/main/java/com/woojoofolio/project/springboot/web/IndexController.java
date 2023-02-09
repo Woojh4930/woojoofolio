@@ -4,9 +4,6 @@ import com.woojoofolio.project.springboot.config.auth.LoginUser;
 import com.woojoofolio.project.springboot.config.auth.dto.SessionUser;
 import com.woojoofolio.project.springboot.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class IndexController {
 
     private final PostsService postsService;
-
-    @Value("#{apiKey['OPEN-AI-API-KEY']}")
-    private String API_KEY;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
@@ -55,9 +49,7 @@ public class IndexController {
     }
 
     @GetMapping("/openai")
-    public String openAi(Model model) {
-
-        model.addAttribute("key", API_KEY);
+    public String openAi() {
         return "openai";
     }
 }

@@ -20,15 +20,4 @@ public class WebConfig implements WebMvcConfigurer {
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(loginUserArgumentResolver);
     }
-
-    @Bean(name = "apiKey")
-    public PropertiesFactoryBean propertiesFactoryBean() throws Exception {
-        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-        ClassPathResource classPathResource = new ClassPathResource("application-api-key.properties");
-
-        propertiesFactoryBean.setLocation(classPathResource);
-
-        return propertiesFactoryBean;
-    }
-
 }
