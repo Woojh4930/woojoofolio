@@ -4,6 +4,7 @@ env:
   CODE_DEPLOY_APPLICATION_NAME: woojoofolio-codedeploy
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: woojoofolio-codedeploy-group
   PROJECT_NAME: woojoofolio
+  TEST: ${{ secrets.TEST }}
 
 name: woojoofolio 배포 # (0) GitHub Action에서 보여질 이름을 지정합니다. 
 
