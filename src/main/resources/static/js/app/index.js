@@ -103,7 +103,7 @@ var main = {
             let template = `    <div class="line">
         <span class="chat-box">${text}</span>
     </div>`
-            $('.chat-content').append(template);
+            $('.chat-content').append(template).scrollTop($('.chat-content')[0].scrollHeight);
         }).fail(function (error) {
             $('#warning-text').text("글을 작성할 수 있는 권한이 없습니다.");
         });
@@ -114,7 +114,7 @@ var main = {
         let template = `    <div class="line">
         <span class="chat-box mine">${text}</span>
     </div>`
-        $('.chat-content').append(template);
+        $('.chat-content').append(template).scrollTop($('.chat-content')[0].scrollHeight);
     },
 }
 
