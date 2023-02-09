@@ -1,3 +1,5 @@
+import {config} from "../key";
+
 var main = {
     init: function () {
         let _this = this;
@@ -79,7 +81,6 @@ var main = {
     },
 
     openAi: function () {
-        const KEY = $('#send').attr('datatype');
         let text = $('#input').val();
         let data = {
             'model': "text-davinci-003",
@@ -94,7 +95,7 @@ var main = {
             type: 'POST',
             url: 'https://api.openai.com/v1/completions',
             headers: {
-                Authorization: 'Bearer ' + KEY,
+                Authorization: 'Bearer ' + config.open_ai_key,
             },
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

@@ -16,9 +16,6 @@ public class IndexController {
 
     private final PostsService postsService;
 
-    @Value("${OPEN_API_KEY}")
-    private String KEY;
-
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
@@ -53,8 +50,7 @@ public class IndexController {
     }
 
     @GetMapping("/openai")
-    public String openAi(Model model) {
-        model.addAttribute("KEY", KEY);
+    public String openAi() {
         return "openai";
     }
 }
