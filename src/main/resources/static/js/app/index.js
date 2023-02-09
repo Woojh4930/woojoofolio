@@ -93,7 +93,7 @@ var main = {
             type: 'POST',
             url: 'https://api.openai.com/v1/completions',
             headers: {
-                Authorization: 'Bearer ' + $('#send').attr("datatype"),
+                Authorization: 'Bearer ' + $('#apikey').val(),
             },
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
