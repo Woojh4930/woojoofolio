@@ -18,8 +18,8 @@ public class IndexController {
     private final PostsService postsService;
 
 
-    @Value("${(test.key != null) ? test.key : '4321'}")
-    private String key;
+    @Value("${test.key:4321}")
+    private Long key;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
