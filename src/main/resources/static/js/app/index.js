@@ -1,5 +1,3 @@
-import {config} from "../key";
-
 var main = {
     init: function () {
         let _this = this;
@@ -95,7 +93,7 @@ var main = {
             type: 'POST',
             url: 'https://api.openai.com/v1/completions',
             headers: {
-                Authorization: 'Bearer ' + config.open_ai_key,
+                Authorization: 'Bearer ' + $('#send').attr("datatype"),
             },
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
