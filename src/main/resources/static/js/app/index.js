@@ -79,7 +79,7 @@ var main = {
     },
 
     openAi: function () {
-        const KEY = process.env.API_KEY;
+        const KEY = $('#send').attr('datatype');
         let text = $('#input').val();
         let data = {
             'model': "text-davinci-003",
