@@ -17,13 +17,14 @@ public class IndexController {
 
     private final PostsService postsService;
 
-    private final Environment env;
+
+    @Value("${(test.key != null) ? test.key : 4321}")
+    private Long key;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        String test = env.getProperty("TEST");
-        model.addAttribute("test", test);
+        model.addAttribute("test", key);
         if (user != null) {
             model.addAttribute("name", user.getName());
             model.addAttribute("authority", user.isAuthority());
