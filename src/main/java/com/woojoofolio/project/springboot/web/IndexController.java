@@ -18,13 +18,13 @@ public class IndexController {
     private final PostsService postsService;
 
 
-    @Value("${(test.key != null) ? test.key : 4321}")
-    private Long key;
+//    @Value("${(test.key != null) ? test.key : 4321}")
+//    private Long key;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        model.addAttribute("test", key);
+//        model.addAttribute("test", key);
         if (user != null) {
             model.addAttribute("name", user.getName());
             model.addAttribute("authority", user.isAuthority());
