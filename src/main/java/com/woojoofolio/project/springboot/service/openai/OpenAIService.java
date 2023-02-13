@@ -21,7 +21,7 @@ public class OpenAIService {
     public HttpEntity<ChatGptRequest> buildHttpEntity(ChatGptRequest chatGptRequest) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", "application/json");
-        headers.add("Authorization", "Bearer " + "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");
+        headers.add("Authorization", "Bearer " + API_KEY);
         return new HttpEntity<>(chatGptRequest, headers);
     }
 
