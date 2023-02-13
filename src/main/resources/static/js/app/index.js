@@ -16,13 +16,11 @@ var main = {
 
         $('#btn-send').on('click', function () {
             _this.question();
-            _this.answer();
         });
 
         $('#prompt').on('keypress', function (event) {
             if (event.key === 'Enter') {
                 _this.question();
-                _this.answer();
             }
         })
 
@@ -85,8 +83,7 @@ var main = {
         });
     },
 
-    answer: function () {
-        let prompt = $('#prompt').val();
+    answer: function (prompt) {
         $.ajax({
             type: 'POST',
             url: '/api/v1/openai/send',
@@ -100,17 +97,21 @@ var main = {
     </div>`
             $('.chat-content').append(template).scrollTop($('.chat-content')[0].scrollHeight);
         }).fail(function (error) {
-            alert(error);
+            $('#warning-text').text("유효하지 않은 요청입니다.");
         });
     },
 
     question: function () {
         let text = $('#prompt').val();
+        if (text === "") {
+            return;
+        }
         let template = `    <div class="line">
         <span class="chat-box mine">${text}</span>
-    </div>`
+    </div>`;
         $('.chat-content').append(template).scrollTop($('.chat-content')[0].scrollHeight);
         $('#prompt').val("");
+        this.answer(text);
     },
 }
 
