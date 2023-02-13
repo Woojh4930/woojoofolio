@@ -18,12 +18,10 @@ public class OpenAIService {
     @Value("${openai.api.key:'none'}")
     private String API_KEY;
 
-    private final String a = "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";
-
     public HttpEntity<ChatGptRequest> buildHttpEntity(ChatGptRequest chatGptRequest) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", "application/json");
-        headers.add("Authorization", "Bearer " + a);
+        headers.add("Authorization", "Bearer " + API_KEY);
         return new HttpEntity<>(chatGptRequest, headers);
     }
 
