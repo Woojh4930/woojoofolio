@@ -14,9 +14,16 @@ var main = {
             _this.delete();
         });
 
-        $('#send').on('click', function () {
-            _this.interactive();
-            _this.openAi();
+        $('#btn-send').on('click', function () {
+            _this.question();
+            _this.answer();
+        });
+
+        $('#prompt').on('keypress', function (event) {
+            if (event.key === 'Enter') {
+                _this.question();
+                _this.answer();
+            }
         })
 
     },
@@ -78,26 +85,14 @@ var main = {
         });
     },
 
-    openAi: function () {
-        let text = $('#input').val();
-        let data = {
-            'model': "text-davinci-003",
-            'prompt': text,
-            'temperature': 0.7,
-            'max_tokens': 256,
-            'top_p': 1,
-            'frequency_penalty': 0,
-            'presence_penalty': 0
-        };
+    answer: function () {
+        let prompt = $('#prompt').val();
         $.ajax({
             type: 'POST',
-            url: 'https://api.openai.com/v1/completions',
-            headers: {
-                Authorization: 'Bearer ' + $('#apikey').val(),
-            },
+            url: '/api/v1/openai/send',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            data: JSON.stringify(prompt)
         }).done(function (res) {
             let text = res.choices[0].text;
             let template = `    <div class="line">
@@ -105,16 +100,17 @@ var main = {
     </div>`
             $('.chat-content').append(template).scrollTop($('.chat-content')[0].scrollHeight);
         }).fail(function (error) {
-            $('#warning-text').text("글을 작성할 수 있는 권한이 없습니다.");
+            alert(error);
         });
     },
 
-    interactive: function () {
-        let text = $('#input').val();
+    question: function () {
+        let text = $('#prompt').val();
         let template = `    <div class="line">
         <span class="chat-box mine">${text}</span>
     </div>`
         $('.chat-content').append(template).scrollTop($('.chat-content')[0].scrollHeight);
+        $('#prompt').val("");
     },
 }
 
