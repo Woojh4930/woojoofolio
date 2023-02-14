@@ -96,6 +96,7 @@ var main = {
         <span class="chat-box">${text}</span>
     </div>`
             $('.chat-content').append(template).scrollTop($('.chat-content')[0].scrollHeight);
+            $('#warning-text').text("");
         }).fail(function (error) {
             $('#warning-text').text("유효하지 않은 요청입니다.");
         });
