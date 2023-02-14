@@ -89,7 +89,7 @@ var main = {
             url: '/api/v1/openai/send',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(prompt)
+            data: prompt
         }).done(function (res) {
             let text = res.choices[0].text;
             let template = `    <div class="line">

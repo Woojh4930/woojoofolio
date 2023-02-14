@@ -51,7 +51,6 @@ public class UserRepositoryTest {
 
         User user = users.get(0);
 
-        System.out.println(">>>>>>>>>>>>>> createDate=" + user.getCreateDate() + ", modifiedDate=" + user.getModifiedDate());
 
         assertThat(user.getCreateDate()).isAfter(now);
         assertThat(user.getModifiedDate()).isAfter(now);
