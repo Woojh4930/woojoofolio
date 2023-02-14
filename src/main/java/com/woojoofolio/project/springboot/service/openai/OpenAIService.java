@@ -5,7 +5,6 @@ import com.woojoofolio.project.springboot.web.dto.ChatGptResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class OpenAIService {
 
     private static RestTemplate restTemplate = new RestTemplate();
+    private final ChatGptRequest chatGptRequest = new ChatGptRequest();
 
     @Value("${openai.api.key:'none'}")
     private String API_KEY;
@@ -36,8 +36,9 @@ public class OpenAIService {
     }
 
     public ChatGptResponse askQuestion(String prompt) {
-        ChatGptRequest chatGptRequest = new ChatGptRequest();
-        chatGptRequest.setPrompt(prompt);
-        return this.getResponse(this.buildHttpEntity(chatGptRequest));
+        this.chatGptRequest.setPrompt(prompt);
+        ChatGptResponse chatGptResponse = this.getResponse(this.buildHttpEntity(this.chatGptRequest));
+        this.chatGptRequest.setPrompt(chatGptResponse.getChoices().get(0).getText());
+        return chatGptResponse;
     }
 }
