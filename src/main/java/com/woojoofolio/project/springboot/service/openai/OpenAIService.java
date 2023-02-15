@@ -26,19 +26,20 @@ public class OpenAIService {
     }
 
     public ChatGptResponse getResponse(HttpEntity<ChatGptRequest> chatGptRequestHttpEntity) {
-        ResponseEntity<ChatGptResponse> responseEntity = restTemplate.postForEntity(
-                "https://api.openai.com/v1/completions",
-                chatGptRequestHttpEntity,
-                ChatGptResponse.class
-        );
-
+        ResponseEntity<ChatGptResponse> responseEntity;
+        synchronized (this) {
+            System.out.println(chatGptRequestHttpEntity.getBody().getPrompt());
+            responseEntity = restTemplate.postForEntity(
+                    "https://api.openai.com/v1/completions",
+                    chatGptRequestHttpEntity,
+                    ChatGptResponse.class
+            );
+        }
         return responseEntity.getBody();
     }
 
     public ChatGptResponse askQuestion(String prompt) {
         this.chatGptRequest.setPrompt(prompt);
-        ChatGptResponse chatGptResponse = this.getResponse(this.buildHttpEntity(this.chatGptRequest));
-        this.chatGptRequest.setPrompt(chatGptResponse.getChoices().get(0).getText());
-        return chatGptResponse;
+        return this.getResponse(this.buildHttpEntity(this.chatGptRequest));
     }
 }
