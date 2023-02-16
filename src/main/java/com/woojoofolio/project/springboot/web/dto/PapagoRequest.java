@@ -6,11 +6,13 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PapagoRequest {
-    private String source = "ko";
-    private String target = "en";
+    private String source;
+    private String target;
     private String text;
 
-    public void setText(String text) {
+    public PapagoRequest(String source, String target, String text) {
+        this.source = source;
+        this.target = target;
         this.text = text;
     }
 }

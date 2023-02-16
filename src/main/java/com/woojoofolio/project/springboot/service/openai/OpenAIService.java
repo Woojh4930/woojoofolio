@@ -1,7 +1,9 @@
 package com.woojoofolio.project.springboot.service.openai;
 
+import com.woojoofolio.project.springboot.service.papago.PapagoService;
 import com.woojoofolio.project.springboot.web.dto.ChatGptRequest;
 import com.woojoofolio.project.springboot.web.dto.ChatGptResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -9,11 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@RequiredArgsConstructor
 @Service
 public class OpenAIService {
 
-    private static RestTemplate restTemplate = new RestTemplate();
+    private static final RestTemplate restTemplate = new RestTemplate();
     private final ChatGptRequest chatGptRequest = new ChatGptRequest();
+    private final PapagoService papagoService;
 
     @Value("${openai.api.key:'none'}")
     private String API_KEY;
@@ -35,10 +39,9 @@ public class OpenAIService {
         return responseEntity.getBody();
     }
 
-    public ChatGptResponse askQuestion(String prompt) {
-        this.chatGptRequest.setPrompt(prompt);
-        ChatGptResponse chatGptResponse = this.getResponse(this.buildHttpEntity(this.chatGptRequest));
-        this.chatGptRequest.setPrompt(chatGptResponse.getChoices().get(0).getText());
-        return chatGptResponse;
+    public String askQuestion(String prompt) {
+        this.chatGptRequest.setPrompt(papagoService.askTranslation("ko", "en", prompt).getTranslatedText());
+        String text = this.getResponse(this.buildHttpEntity(this.chatGptRequest)).getChoices().get(0).getText();
+        return papagoService.askTranslation("en", "ko", text).getTranslatedText();
     }
 }
