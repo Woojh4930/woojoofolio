@@ -3,6 +3,8 @@ package com.woojoofolio.project.springboot.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.woojoofolio.project.springboot.domain.posts.Posts;
 import com.woojoofolio.project.springboot.domain.posts.PostsRepository;
+import com.woojoofolio.project.springboot.service.openai.OpenAIService;
+import com.woojoofolio.project.springboot.service.papago.PapagoService;
 import com.woojoofolio.project.springboot.web.dto.PostsSaveRequestDto;
 import com.woojoofolio.project.springboot.web.dto.PostsUpdateRequestDto;
 import org.junit.After;
@@ -11,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -38,6 +41,12 @@ public class PostsApiControllerTest {
 
     @Autowired
     private WebApplicationContext context;
+
+    @MockBean
+    OpenAIService openAIService;
+
+    @MockBean
+    PapagoService papagoService;
 
     private MockMvc mvc;
 

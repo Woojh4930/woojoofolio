@@ -1,10 +1,13 @@
 package com.woojoofolio.project.springboot.domain.user;
 
+import com.woojoofolio.project.springboot.service.openai.OpenAIService;
+import com.woojoofolio.project.springboot.service.papago.PapagoService;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
@@ -18,6 +21,12 @@ public class UserRepositoryTest {
 
     @Autowired
     UserRepository userRepository;
+
+    @MockBean
+    OpenAIService openAIService;
+
+    @MockBean
+    PapagoService papagoService;
 
     @After
     public void cleanup() {
