@@ -84,19 +84,18 @@ var main = {
     },
 
     answer: function (prompt) {
+        $('#warning-text').text("");
         $.ajax({
             type: 'POST',
             url: '/api/v1/openai/send',
-            dataType: 'json',
+            dataType: 'text',
             contentType: 'application/json; charset=utf-8',
             data: prompt
         }).done(function (res) {
-            let text = res.choices[0].text;
             let template = `    <div class="line">
-        <span class="chat-box">${text}</span>
+        <span class="chat-box">${res}</span>
     </div>`
             $('.chat-content').append(template).scrollTop($('.chat-content')[0].scrollHeight);
-            $('#warning-text').text("");
         }).fail(function (error) {
             $('#warning-text').text("유효하지 않은 요청입니다.");
         });

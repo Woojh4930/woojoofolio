@@ -12,17 +12,17 @@
 
 
     buildscript {
-        ext {
-        springBootVersion = '2.1.7.RELEASE'
-        }
-
-        repositories {
-        mavenCentral()
-        }
-
-        dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        }
+      ext {
+      springBootVersion = '2.1.7.RELEASE'
+      }
+  
+      repositories {
+      mavenCentral()
+      }
+  
+      dependencies {
+      classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+      }
     }
     
     apply plugin: 'java'
@@ -30,19 +30,19 @@
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     
-    
     group 'com.woojoofolio.project'
     version '1.0-SNAPSHOT'
     sourceCompatibility = 11
     
     repositories {
-        mavenCentral()
+      mavenCentral()
     }
     
     dependencies {
-        implementation('org.springframework.boot:spring-boot-starter-web')
-        testImplementation('org.springframework.boot:spring-boot-starter-test')
+      implementation('org.springframework.boot:spring-boot-starter-web')
+      testImplementation('org.springframework.boot:spring-boot-starter-test')
     }
+
 
   - [X] springBoot Application 자체 서버 실행
 ### Git
@@ -70,6 +70,7 @@
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+
 ### JPA
 - [X] Spring Data JPA 설치
   - JPA 의존성 추가
@@ -77,6 +78,8 @@
     
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('com.h2database:h2')
+
+
 - [X] JPA Auditing을 이용하여 생성시간/수정시간 자동화하기
   - domain 패키지에 BaseTimeEntity 생성
   - @MappedSuperclass는 다른 엔티티가 상속한 경우 칼럼으로 인식
@@ -90,6 +93,8 @@
 
 
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
+
+
 - [X] 게시글 등록 화면 만들기
   - PostsApiController(REST) 생성 후 /api/v1/posts 관리
   - PostsRequestDto 생성 후 Posts Entity로 바꾸는 메서드 만들기
@@ -115,6 +120,7 @@
 
 
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 
 ### OAuth 2.0
 - [X] 구글 로그인 연동
@@ -153,6 +159,8 @@
 
     sudo hostnamectl set-hostname 바꾸고 싶은 이름
     sudo reboot #인스턴스 재부팅 후 적용
+
+
 ![img.png](img.png)
 #### RDS
 - [X] RDS 생성
@@ -186,6 +194,8 @@
     insert into test (content) values ('테스트');
     
     select * from test;
+
+
 - [X] EC2에서 RDS 접근 확인
   - EC2에 mysql 다운로드 및 확인
 
@@ -193,6 +203,8 @@
     sudo yum install mysql
     mysql -u [계정 ID] -p -h [Host네임]; #RDS 접근
     show databass; # 데이터베이스 목록 확인
+
+
 #### IAM
 - [X] 역할 생성
   - EC2 권한 생성
@@ -261,6 +273,7 @@
 
     implementation 'org.springframework.session:spring-session-jdbc'
 
+
 - Jpa Auditing 기능 개선
 
 ## refactoring
@@ -278,7 +291,20 @@
   - ajax에 모든 데이터를 집어넣고 전송해서 이런 문제가 발생
   - 백엔드에서 직접 post 방식으로 데이터를 보내는 함수 생성
   - 프론트에서는 그 함수를 실행하여 ajax에서 response 받는 역할만 수행
+  - API 요청 함수에 동기화를 하여 동시성 문제 해결
+- [X] 파파고 API 적용(챗봇에서 한글로 질문했을 때 좋은 품질의 답변을 받기 위해 사용)
+  - 기존에 있는 Naver 클라이언트 정보를 이용하여 API만 추가
+  - 백엔드에서 post 방식으로 데이터 전송(openai API의 기능과 유사)
 
 ## 트러블슈팅
 - nginx를 이용해서 서버를 열면 RDS에 데이터가 저장되지 않는 불상사가 발생했다.
   - 해결방법 : 놀랍게도 start.sh에서 jar를 실행하는 부분에 application의 철자 중 t 하나를 빼먹어서 그랬다...
+- @Value 사용시 테스트에서 항상 나왔던 오류
+
+
+    Failed to load ApplicationContext
+    Error creating bean with name 'openAIService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.security.oauth2.client.registration.openai.client-id'
+    Could not resolve placeholder 'spring.security.oauth2.client.registration.openai.client-id' in value "${spring.security.oauth2.client.registration.openai.client-id}"
+
+
+  - 해결방법 : 테스트 환경에서 의존성을 이유로 필요한 Bean을 찾지 못해 일어난 에러였다. 당장에 사용하지 않더라도 @MockBean을 이용해 필요한 클래스를 등록해주어야 했다.
