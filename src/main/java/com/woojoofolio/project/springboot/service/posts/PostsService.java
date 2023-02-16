@@ -2,10 +2,10 @@ package com.woojoofolio.project.springboot.service.posts;
 
 import com.woojoofolio.project.springboot.domain.posts.Posts;
 import com.woojoofolio.project.springboot.domain.posts.PostsRepository;
-import com.woojoofolio.project.springboot.web.dto.PostsListResponseDto;
-import com.woojoofolio.project.springboot.web.dto.PostsResponseDto;
-import com.woojoofolio.project.springboot.web.dto.PostsSaveRequestDto;
-import com.woojoofolio.project.springboot.web.dto.PostsUpdateRequestDto;
+import com.woojoofolio.project.springboot.web.dto.posts.PostsListResponseDto;
+import com.woojoofolio.project.springboot.web.dto.posts.PostsResponseDto;
+import com.woojoofolio.project.springboot.web.dto.posts.PostsSaveRequestDto;
+import com.woojoofolio.project.springboot.web.dto.posts.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

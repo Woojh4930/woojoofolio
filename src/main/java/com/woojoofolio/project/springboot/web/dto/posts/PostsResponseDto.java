@@ -1,22 +1,20 @@
-package com.woojoofolio.project.springboot.web.dto;
+package com.woojoofolio.project.springboot.web.dto.posts;
 
 import com.woojoofolio.project.springboot.domain.posts.Posts;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
-public class PostsListResponseDto {
+public class PostsResponseDto {
 
     private Long id;
     private String title;
     private String author;
-    private LocalDateTime modifiedDate;
+    private String content;
 
-    public PostsListResponseDto(Posts entity) {
+    public PostsResponseDto(Posts entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.author = entity.getAuthor();
-        this.modifiedDate = entity.getModifiedDate();
+        this.content = entity.getContent();
     }
 }

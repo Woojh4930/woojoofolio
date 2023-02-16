@@ -1,4 +1,4 @@
-package com.woojoofolio.project.springboot.web.dto;
+package com.woojoofolio.project.springboot.web.dto.chatgpt;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

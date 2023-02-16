@@ -1,8 +1,8 @@
 package com.woojoofolio.project.springboot.service.openai;
 
 import com.woojoofolio.project.springboot.service.papago.PapagoService;
-import com.woojoofolio.project.springboot.web.dto.ChatGptRequest;
-import com.woojoofolio.project.springboot.web.dto.ChatGptResponse;
+import com.woojoofolio.project.springboot.web.dto.chatgpt.ChatGptRequest;
+import com.woojoofolio.project.springboot.web.dto.chatgpt.ChatGptResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -32,7 +32,6 @@ public class OpenAIService {
     public ChatGptResponse getResponse(HttpEntity<ChatGptRequest> chatGptRequestHttpEntity) {
         ResponseEntity<ChatGptResponse> responseEntity;
         synchronized (this) {
-            System.out.println(chatGptRequestHttpEntity.getBody().getPrompt());
             responseEntity = restTemplate.postForEntity(
                     "https://api.openai.com/v1/completions",
                     chatGptRequestHttpEntity,

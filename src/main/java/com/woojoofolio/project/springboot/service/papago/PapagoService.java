@@ -1,7 +1,7 @@
 package com.woojoofolio.project.springboot.service.papago;
 
-import com.woojoofolio.project.springboot.web.dto.PapagoRequest;
-import com.woojoofolio.project.springboot.web.dto.PapagoResponse;
+import com.woojoofolio.project.springboot.web.dto.papago.PapagoRequest;
+import com.woojoofolio.project.springboot.web.dto.papago.PapagoResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
