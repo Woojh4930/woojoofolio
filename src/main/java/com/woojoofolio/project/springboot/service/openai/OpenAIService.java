@@ -30,12 +30,15 @@ public class OpenAIService {
     }
 
     public ChatGptResponse getResponse(HttpEntity<ChatGptRequest> chatGptRequestHttpEntity) {
-        ResponseEntity<ChatGptResponse> responseEntity = restTemplate.postForEntity(
-                "https://api.openai.com/v1/completions",
-                chatGptRequestHttpEntity,
-                ChatGptResponse.class
-        );
-
+        ResponseEntity<ChatGptResponse> responseEntity;
+        synchronized (this) {
+            System.out.println(chatGptRequestHttpEntity.getBody().getPrompt());
+            responseEntity = restTemplate.postForEntity(
+                    "https://api.openai.com/v1/completions",
+                    chatGptRequestHttpEntity,
+                    ChatGptResponse.class
+            );
+        }
         return responseEntity.getBody();
     }
 
