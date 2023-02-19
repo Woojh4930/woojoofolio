@@ -2,6 +2,7 @@ package com.woojoofolio.project.springboot.web;
 
 import com.woojoofolio.project.springboot.config.auth.LoginUser;
 import com.woojoofolio.project.springboot.config.auth.dto.SessionUser;
+import com.woojoofolio.project.springboot.service.RandomManager;
 import com.woojoofolio.project.springboot.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -54,7 +55,7 @@ public class IndexController extends HttpServlet {
     @GetMapping("/openai")
     public String openAi(HttpServletResponse response) {
         /*쿠키에 저장하는 함수*/
-        Cookie cookie = new Cookie("prompt_key", "0");
+        Cookie cookie = new Cookie("prompt_key", RandomManager.getRandomKey());
         cookie.setPath("/api/v1/openai/send");
         cookie.setMaxAge(60 * 60 * 24);
         response.addCookie(cookie);
