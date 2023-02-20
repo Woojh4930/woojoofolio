@@ -2,13 +2,13 @@
 
 <div class="chat-content">
     <div class="line">
-        <span class="chat-box">안녕?</span>
-    </div>
-    <div class="line">
         <span class="chat-box mine">안녕!</span>
     </div>
+    <div class="line">
+        <span class="chat-box">{{prompt_key}}님, 반갑습니다.</span>
+    </div>
 </div>
-<input class="chat-box" id="prompt" name="prompt">
+<input class="chat-box" id="prompt" name="prompt" datatype="{{prompt_key}}">
 <input type="button" id="btn-send" value="전송">
 <span style="color: #ff0000;" id="warning-text"></span>
 

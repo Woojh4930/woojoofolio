@@ -84,13 +84,17 @@ var main = {
     },
 
     answer: function (prompt) {
+        let data = {
+            prompt: prompt,
+            prompt_key: $('#prompt').attr("datatype"),
+        }
         $('#warning-text').text("");
         $.ajax({
             type: 'POST',
             url: '/api/v1/openai/send',
             dataType: 'text',
             contentType: 'application/json; charset=utf-8',
-            data: prompt
+            data: JSON.stringify(data)
         }).done(function (res) {
             let template = `    <div class="line">
         <span class="chat-box">${res}</span>

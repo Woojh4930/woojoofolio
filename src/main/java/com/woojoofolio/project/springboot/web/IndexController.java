@@ -2,7 +2,7 @@ package com.woojoofolio.project.springboot.web;
 
 import com.woojoofolio.project.springboot.config.auth.LoginUser;
 import com.woojoofolio.project.springboot.config.auth.dto.SessionUser;
-import com.woojoofolio.project.springboot.service.RandomManager;
+import com.woojoofolio.project.springboot.service.CookieService;
 import com.woojoofolio.project.springboot.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexController extends HttpServlet {
 
     private final PostsService postsService;
+    private final CookieService cookieService = new CookieService();
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
@@ -53,12 +53,10 @@ public class IndexController extends HttpServlet {
     }
 
     @GetMapping("/openai")
-    public String openAi(HttpServletResponse response) {
+    public String openAi(Model model, HttpServletResponse response) {
         /*쿠키에 저장하는 함수*/
-        Cookie cookie = new Cookie("prompt_key", RandomManager.getRandomKey());
-        cookie.setPath("/api/v1/openai/send");
-        cookie.setMaxAge(60 * 60 * 24);
-        response.addCookie(cookie);
+        String prompt_key = cookieService.setCookie(response);
+        model.addAttribute("prompt_key", prompt_key);
         return "openai";
     }
 }

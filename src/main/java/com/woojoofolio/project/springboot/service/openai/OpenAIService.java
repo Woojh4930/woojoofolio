@@ -1,5 +1,6 @@
 package com.woojoofolio.project.springboot.service.openai;
 
+import com.woojoofolio.project.springboot.service.CookieService;
 import com.woojoofolio.project.springboot.service.papago.PapagoService;
 import com.woojoofolio.project.springboot.web.dto.chatgpt.ChatGptRequest;
 import com.woojoofolio.project.springboot.web.dto.chatgpt.ChatGptResponse;
@@ -11,12 +12,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
+
 @RequiredArgsConstructor
 @Service
 public class OpenAIService {
 
     private static final RestTemplate restTemplate = new RestTemplate();
     private final ChatGptRequest chatGptRequest = new ChatGptRequest();
+    private final CookieService cookieService = new CookieService();
     private final PapagoService papagoService;
 
     @Value("${openai.api.key:'none'}")
@@ -41,9 +47,14 @@ public class OpenAIService {
         return responseEntity.getBody();
     }
 
-    public String askQuestion(String prompt) {
-        this.chatGptRequest.setPrompt(papagoService.askTranslation("ko", "en", prompt).getTranslatedText());
+    public String askQuestion(Map<String, String> prompts, HttpServletRequest request, HttpServletResponse response) {
+        String allPrompts = papagoService.askTranslation("ko", "en", prompts.get("prompt")).getTranslatedText();
+        this.chatGptRequest.setPrompt(allPrompts);
+        prompts.put("prompt", allPrompts);
+        cookieService.getAllPrompts(prompts, request, response);
         String text = this.getResponse(this.buildHttpEntity(this.chatGptRequest)).getChoices().get(0).getText();
+        prompts.put("prompt", text);
+        System.out.println(cookieService.getAllPrompts(prompts, request, response));
         return papagoService.askTranslation("en", "ko", text).getTranslatedText();
     }
 }
