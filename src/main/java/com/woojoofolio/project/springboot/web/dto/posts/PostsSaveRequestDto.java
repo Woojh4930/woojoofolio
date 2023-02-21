@@ -1,4 +1,4 @@
-package com.woojoofolio.project.springboot.web.dto;
+package com.woojoofolio.project.springboot.web.dto.posts;
 
 import com.woojoofolio.project.springboot.domain.posts.Posts;
 import lombok.Builder;

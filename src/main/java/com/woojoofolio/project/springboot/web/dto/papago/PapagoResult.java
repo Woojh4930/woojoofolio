@@ -1,4 +1,4 @@
-package com.woojoofolio.project.springboot.web.dto;
+package com.woojoofolio.project.springboot.web.dto.papago;
 
 import lombok.Getter;
 
