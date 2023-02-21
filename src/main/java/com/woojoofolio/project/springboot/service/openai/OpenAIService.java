@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -47,14 +46,11 @@ public class OpenAIService {
         return responseEntity.getBody();
     }
 
-    public String askQuestion(Map<String, String> prompts, HttpServletRequest request, HttpServletResponse response) {
-        String allPrompts = papagoService.askTranslation("ko", "en", prompts.get("prompt")).getTranslatedText();
-        this.chatGptRequest.setPrompt(allPrompts);
-        prompts.put("prompt", allPrompts);
-        cookieService.getAllPrompts(prompts, request, response);
+    public String askQuestion(String prompt, HttpServletRequest request, HttpServletResponse response) {
+        String translatedQuestion = papagoService.askTranslation("ko", "en", prompt).getTranslatedText();
+        this.chatGptRequest.setPrompt(cookieService.getAllPrompts(translatedQuestion, request, response));
         String text = this.getResponse(this.buildHttpEntity(this.chatGptRequest)).getChoices().get(0).getText();
-        prompts.put("prompt", text);
-        System.out.println(cookieService.getAllPrompts(prompts, request, response));
+        cookieService.getAllPrompts(text, request, response);
         return papagoService.askTranslation("en", "ko", text).getTranslatedText();
     }
 }

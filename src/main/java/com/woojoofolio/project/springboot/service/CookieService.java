@@ -3,46 +3,38 @@ package com.woojoofolio.project.springboot.service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Map;
 
 public class CookieService {
+    private final String prompt_key = "allPrompts";
 
     public String setCookie(HttpServletResponse response) {
-        String prompt_key = RandomManager.getRandomKey();
         Cookie cookie = new Cookie(prompt_key, "");
         cookie.setPath("/api/v1/openai/send");
-        cookie.setMaxAge(60 * 60 * 24);
         response.addCookie(cookie);
         return prompt_key;
     }
 
-    public String getAllPrompts(Map<String, String> prompts, HttpServletRequest request, HttpServletResponse response) {
-        Cookie cookie = setCookiePrompt(prompts, request);
+    public String getAllPrompts(String prompt, HttpServletRequest request, HttpServletResponse response) {
+        Cookie cookie = setCookiePrompt(prompt, request);
         updateCookie(cookie, response);
-        return cookie.getValue();
+        return URLDecoder.decode(cookie.getValue(), StandardCharsets.UTF_8);
     }
 
-    private Cookie getCookie(String prompt_key, HttpServletRequest request) {
+    private Cookie getCookie(HttpServletRequest request) {
         return Arrays.stream(request.getCookies())
                 .filter(cookie -> prompt_key.equals(cookie.getName()))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("잘못된 정보입니다."));
     }
 
-    private Cookie setCookiePrompt(Map<String, String> prompts, HttpServletRequest request) {
-        Cookie cookie = getCookie(prompts.get("prompt_key"), request);
-        cookie.setMaxAge(0);
-        System.out.println(cookie.getValue() + "\\n" + prompts.get("prompt"));
-        try {
-            Cookie updateCookie = new Cookie(prompts.get("prompt_key"), cookie.getValue() + URLEncoder.encode( "\\n" + prompts.get("prompt"),"UTF-8"));
-            updateCookie.setPath("/api/v1/openai/send");
-            updateCookie.setMaxAge(60 * 60 * 24);
-            return updateCookie;
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+    private Cookie setCookiePrompt(String prompt, HttpServletRequest request) {
+        Cookie cookie = getCookie(request);
+        Cookie updatedCookie = new Cookie(prompt_key, cookie.getValue() + URLEncoder.encode(prompt + "\\n", StandardCharsets.UTF_8));
+        updatedCookie.setPath("/api/v1/openai/send");
+        return updatedCookie;
     }
 
     private void updateCookie(Cookie cookie, HttpServletResponse response) {

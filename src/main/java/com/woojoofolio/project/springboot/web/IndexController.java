@@ -53,10 +53,9 @@ public class IndexController extends HttpServlet {
     }
 
     @GetMapping("/openai")
-    public String openAi(Model model, HttpServletResponse response) {
+    public String openAi(HttpServletResponse response) {
         /*쿠키에 저장하는 함수*/
         String prompt_key = cookieService.setCookie(response);
-        model.addAttribute("prompt_key", prompt_key);
         return "openai";
     }
 }
