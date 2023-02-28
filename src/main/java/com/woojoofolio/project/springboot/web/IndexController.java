@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexController extends HttpServlet {
 
     private final PostsService postsService;
+    private final CookieService cookieService = new CookieService();
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
@@ -53,6 +54,7 @@ public class IndexController extends HttpServlet {
 
     @GetMapping("/openai")
     public String openAi(HttpServletResponse response) {
+        cookieService.setCookie(response);
         return "openai";
     }
 }
