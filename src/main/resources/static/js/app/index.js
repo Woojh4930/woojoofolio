@@ -22,8 +22,15 @@ let main = {
             if (event.key === 'Enter') {
                 _this.question();
             }
-        })
+        });
 
+        $('#content').on("propertychange change keyup paste input", function () {
+            $(this).height(1).height($(this).prop('scrollHeight'));
+        });
+
+        $('#content-read').ready(function () {
+            $('#content-read').height(1).height($('#content-read').prop('scrollHeight'));
+        });
     },
     save: function () {
         let data = {
