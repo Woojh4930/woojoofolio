@@ -49,7 +49,7 @@ let main = {
             alert(JSON.stringify(id) + '번 글이 등록되었습니다.');
             window.location.href = '/';
         }).fail(function (error) {
-            $('#warning-text').text("글을 작성할 수 있는 권한이 없습니다.");
+            $('#warning-text').text("글을 작성할 수 있는 권한이 없습니다");
         });
     },
     update: function () {
